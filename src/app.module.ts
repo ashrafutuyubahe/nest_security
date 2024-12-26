@@ -2,9 +2,29 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Users } from './user/schema/user.schema';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [UserModule],
+  imports: [UserModule,
+    ConfigModule.forRoot({
+      isGlobal:true,
+      envFilePath:'.env'
+    }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.host,
+      port: 5432,
+      username: 'postgres',
+      password: '123',
+      database: process.env.db,
+      entities: [Users],
+      synchronize: true,
+    }),
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
