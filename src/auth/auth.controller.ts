@@ -9,6 +9,7 @@ import { RegisterDto } from 'src/dtos/RegisterDto.dto';
 export class AuthController {
 
     constructor(
+      
         private readonly authSerice:AuthService
     ){}
 

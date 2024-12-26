@@ -12,6 +12,7 @@ export class AuthService {
   constructor(
     @InjectRepository(Users)
     private readonly userRepository: Repository<Users>,
+    
     private readonly jwtService: JwtService,
   ) {}
 

@@ -6,9 +6,11 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from './user/schema/user.schema';
 import { AuthModule } from './auth/auth.module';
+import { LocalStrategy } from './strategies/Local.strategy';
 
 @Module({
-  imports: [UserModule,
+  imports: [
+    UserModule,
     AuthModule,
     ConfigModule.forRoot({
       isGlobal:true,
@@ -24,7 +26,7 @@ import { AuthModule } from './auth/auth.module';
       entities: [Users],
       synchronize: true,
     }),
-    AuthModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],
