@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [UserModule,
+    AuthModule,
     ConfigModule.forRoot({
       isGlobal:true,
       envFilePath:'.env'
